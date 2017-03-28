@@ -2,6 +2,8 @@ package it.polito.tdp.libretto.model;
 
 import java.util.*;
 
+import it.polito.tdp.libretto.db.EsameDAO;
+
 public class Model {
 	
 	private List<Esame> esami;
@@ -24,10 +26,10 @@ public class Model {
 	}
 	
 	public Esame trovaEsame(String codice){
-		int pos = esami.indexOf(new Esame(codice, null, null));
-		if(pos==-1)
-			return null;
-		else
-			return esami.get(pos);
+		EsameDAO dao = new EsameDAO();
+		
+		Esame e = dao.find(codice);
+		
+		return e;
 	}
 }
